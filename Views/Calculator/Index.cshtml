@@ -1,0 +1,67 @@
+@using SimpleCalculator.Models
+
+@model ViewModel
+
+@{
+    var calculations = ViewData.Model.calculations ?? new List<Calculation>();
+    var calculation = ViewData.Model.calculation ?? new Calculation();
+}
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Calculator</h2>
+
+<div> Enter your numbers below. </div>
+<br />
+<form action="/Calculator/Calculate">
+    <b> Number 1: </b><input type="number" name="nr1">
+    <select name="operation">
+        <option>+</option>
+        <option>-</option>
+        <option>*</option>
+        <option>/</option>
+    </select>
+    <b> Number 2: </b><input type="number" name="nr2"><br /> <br />
+    <div><b> Result: @calculation.First_Number @calculation.Operator @calculation.Second_Number = @calculation.Result </b></div><br />
+    <button type="submit" formaction="/Calculator/Calculate">Calculate</button>
+    <button type="submit" formaction="/Calculator/Save">Save</button>
+</form>
+
+<div>
+    Last five calculations :
+    <ul>
+        @foreach (var c in calculations)
+        {
+            <li>@c.First_Number @c.Operator @c.Second_Number = @c.Result</li>
+        }
+    </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br />
+
